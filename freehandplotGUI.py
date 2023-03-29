@@ -16,6 +16,7 @@ FUNCTION_TYPES = [
     'polynomial 3',
     'polynomial 4',
     'polynomial 5',
+    'polynomial 6',
     'tangent',
     'hyperbolic tangent',
     'hyperbolic sine',
@@ -37,6 +38,7 @@ FUNCTION_NAMES = {
     'polynomial 3': 'y = a*x^3 + b*x^2 + c*x + d',
     'polynomial 4': 'y = a*x^4 + b*x^3 + c*x^2 + d*x + e',
     'polynomial 5': 'y = a*x^5 + b*x^4 + c*x^3 + d*x^2 + e*x + f',
+    'polynomial 6': 'y = a*x^6 + b*x^5 + c*x^4 + d*x^3 + e*x^2 + f*x + g',
 }
 
 FUNCTION_PARAMS = {
@@ -53,6 +55,7 @@ FUNCTION_PARAMS = {
     'polynomial 3': ['a', 'b', 'c', 'd'],
     'polynomial 4': ['a', 'b', 'c', 'd', 'e'],
     'polynomial 5': ['a', 'b', 'c', 'd', 'e', 'f'],
+    'polynomial 6': ['a', 'b', 'c', 'd', 'e', 'f', 'g']
 }
 
 FUNCTION_MAP = {
@@ -70,6 +73,8 @@ FUNCTION_MAP = {
     'polynomial 4': (lambda x, a, b, c, d, e: a * x**4 + b * x**3 + c * x**2 + d * x + e, [1.0, 1.0, 1.0, 1.0, 0.0]),
     'polynomial 5': (lambda x, a, b, c, d, e, f: a * x**5 + b * x**4 + c * x**3 + d * x**2 + e * x + f, 
                      [1.0, 1.0, 1.0, 1.0, 1.0, 0.0]),
+    'polynomial 6': (lambda x, a, b, c, d, e, f, g: a * x**6 + b * x**5 + c * x**4 + d * x**3 + e * x**2 + f * x + g, 
+                     [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0]),
 } 
 
 def calculate_correlation(x, y):
@@ -203,7 +208,7 @@ class freehandplot:
 
         # Calculate correlation and update label
         score = calculate_correlation(func(x, *popt), y)
-        self.label.configure(text='Correlation: {:.2f}'.format(score))
+        #self.label.configure(text='Correlation: {:.2f}'.format(score))
 
         # Get best-fit function string and update label
         fit_func_str = self.get_fit_func_str(selected_func_type, popt)
